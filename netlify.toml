@@ -3,9 +3,12 @@
   functions = "netlify/functions"
   publish = "build/client"
 
+[build.environment]
+  NODE_ENV = "development"
+
 [context.production]
   command = "npm ci && npm run build"
-  environment = { NODE_ENV = "production" }
+  environment = { NODE_ENV = "development" }
 
 [[redirects]]
   from = "/*"
