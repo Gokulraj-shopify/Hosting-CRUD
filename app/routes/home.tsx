@@ -11,7 +11,8 @@ type User = {
 
 export async function loader(): Promise<{ users: User[] }> {
   try {
-    const users = await db.collection("users").find().toArray();
+    const usersCollection = await db.collection("users");
+    const users = await usersCollection.find().toArray();
 
     const formattedUsers = users.map((user) => ({
       ...user,
@@ -41,16 +42,13 @@ export async function action({request}: Route.ActionArgs) {
       throw new Response("Name is required", { status: 400 });
     }
 
-    await db.collection("users").insertOne(
-      {
-        name,
-      }
-    );
+    const usersCollection = await db.collection("users");
+    await usersCollection.insertOne({
+      name,
+    });
 
     return null;
   }
-
-
 
    if (intent === "delete") {
     const id = formData.get("id");
@@ -59,7 +57,8 @@ export async function action({request}: Route.ActionArgs) {
       throw new Response("Invalid User ID:", { status: 400 });
     }
 
-    await db.collection("users").deleteOne ( {
+    const usersCollection = await db.collection("users");
+    await usersCollection.deleteOne({
       _id: new ObjectId(id),
     });
     return null;
@@ -77,7 +76,8 @@ export async function action({request}: Route.ActionArgs) {
       throw new Response("Name is required", { status: 400 }); 
     }
 
-    await db.collection("users").updateOne(
+    const usersCollection = await db.collection("users");
+    await usersCollection.updateOne(
       {
         _id: new ObjectId(id),
       },
@@ -87,7 +87,7 @@ export async function action({request}: Route.ActionArgs) {
         },
       }
     );
-    return
+    return null;
    }
 
 } catch (error) {
@@ -98,6 +98,7 @@ export async function action({request}: Route.ActionArgs) {
   }
 
   throw new Response("Database operation failed", {status: 500,});
+}
 }
 }
 
