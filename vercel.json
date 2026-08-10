@@ -1,10 +1,10 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": "build/client",
-  "rewrites": [
-    {
-      "source": "/(.*)",
-      "destination": "/"
+  "serverless": false,
+  "functions": {
+    "build/server/index.js": {
+      "memory": 3008,
+      "maxDuration": 30
     }
-  ]
+  }
 }
