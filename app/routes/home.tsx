@@ -100,7 +100,6 @@ export async function action({request}: Route.ActionArgs) {
   throw new Response("Database operation failed", {status: 500,});
 }
 }
-}
 
 export default function Home() {
 
