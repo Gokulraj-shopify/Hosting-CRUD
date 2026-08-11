@@ -63,7 +63,7 @@ export default function UserRow({user}: UserRowProps) {
                         <button 
                             onClick={() => setIsEditing(true)}
                             disabled={isBusy}
-                            className="ml-3 px-3 py-1 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
+                            className="ml-[5rem] px-3 py-1 bg-blue-600 text-white text-sm font-medium rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200"
                         >
                             Edit
                         </button>
