@@ -1,3 +1,10 @@
 {
-  "buildCommand": "npm run build"
+  "buildCommand": "npm run build",
+  "nodeVersion": "20.x",
+  "functions": {
+    "build/server/index.js": {
+      "maxDuration": 30,
+      "memory": 512
+    }
+  }
 }
